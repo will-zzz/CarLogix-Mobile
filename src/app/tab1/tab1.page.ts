@@ -1,8 +1,12 @@
 import { Component } from '@angular/core';
-import { IonHeader, IonToolbar, IonTitle, IonContent, IonInput, IonItem, IonLabel, IonButton, IonIcon, IonSpinner } from '@ionic/angular/standalone';
-import { Router } from '@angular/router';
+import { IonHeader, IonToolbar, IonContent, IonInput, IonItem, IonLabel, IonButton, IonSpinner, IonIcon } from '@ionic/angular/standalone';
+import { Router, NavigationEnd } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
+import { addIcons } from 'ionicons';
+import { camera } from 'ionicons/icons';
+import { ViewWillEnter } from '@ionic/angular';
+import { filter } from 'rxjs/operators';
 
 @Component({
   selector: 'app-tab1',
@@ -11,23 +15,47 @@ import { CommonModule } from '@angular/common';
   imports: [
     IonHeader, 
     IonToolbar, 
-    IonTitle, 
     IonContent, 
     IonInput, 
     IonItem, 
     IonLabel, 
     IonButton,
-    IonIcon,
     IonSpinner,
+    IonIcon,
     FormsModule,
     CommonModule
   ],
 })
-export class Tab1Page {
+export class Tab1Page implements ViewWillEnter {
   railcarInputs: string[] = [''];
   isLoading = false;
+  private previousUrl: string = '';
 
-  constructor(private router: Router) {}
+  constructor(private router: Router) {
+    addIcons({ camera });
+    
+    // Track navigation to detect when coming back from results page
+    this.router.events
+      .pipe(filter(event => event instanceof NavigationEnd))
+      .subscribe((event: any) => {
+        const currentUrl = event.url;
+        // Only reset if we're coming back from results page (not from other tabs)
+        if (this.previousUrl.includes('/tabs/tab1/results') && currentUrl === '/tabs/tab1') {
+          this.railcarInputs = [''];
+          this.isLoading = false;
+        }
+        this.previousUrl = currentUrl;
+      });
+  }
+
+  ionViewWillEnter() {
+    // Only reset if we're coming from results page
+    const currentUrl = this.router.url;
+    if (this.previousUrl.includes('/tabs/tab1/results') && currentUrl === '/tabs/tab1') {
+      this.railcarInputs = [''];
+      this.isLoading = false;
+    }
+  }
 
   addRailcarInput() {
     this.railcarInputs.push('');

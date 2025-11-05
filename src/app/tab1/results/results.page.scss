@@ -103,12 +103,27 @@
   font-size: 16px;
   color: var(--ion-color-medium);
   flex-shrink: 0;
+  transition: transform 0.3s ease-out;
+  
+  &.rotated {
+    transform: rotate(180deg);
+  }
 }
 
 .expanded-content {
-  margin-top: 12px;
-  padding-top: 12px;
-  border-top: 1px solid var(--ion-color-light);
+  max-height: 0;
+  overflow: hidden;
+  margin-top: 0;
+  padding-top: 0;
+  border-top: none;
+  transition: max-height 0.3s ease-out, margin-top 0.3s ease-out, padding-top 0.3s ease-out, border-top 0.3s ease-out;
+  
+  &.expanded {
+    max-height: 500px;
+    margin-top: 12px;
+    padding-top: 12px;
+    border-top: 1px solid var(--ion-color-light);
+  }
 }
 
 .description-text {
@@ -116,6 +131,12 @@
   font-size: 14px;
   color: var(--ion-color-dark);
   line-height: 1.5;
+  opacity: 0;
+  transition: opacity 0.3s ease-out 0.1s;
+}
+
+.expanded-content.expanded .description-text {
+  opacity: 1;
 }
 
 .loading-overlay {

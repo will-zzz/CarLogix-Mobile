@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { IonHeader, IonToolbar, IonTitle, IonContent, IonList, IonItem, IonLabel, IonBadge, IonCheckbox, IonButton, IonIcon, IonSpinner, IonBackButton, IonButtons } from '@ionic/angular/standalone';
+import { IonHeader, IonToolbar, IonTitle, IonContent, IonList, IonItem, IonLabel, IonBadge, IonCheckbox, IonButton, IonIcon, IonSpinner, IonBackButton, IonButtons, IonToggle } from '@ionic/angular/standalone';
 import { HttpClient } from '@angular/common/http';
 import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
 import { addIcons } from 'ionicons';
 import { warning, chevronDown, chevronUp, home } from 'ionicons/icons';
 
@@ -30,7 +31,9 @@ interface EquipmentHealthItem {
     IonSpinner,
     IonBackButton,
     IonButtons,
-    CommonModule
+    IonToggle,
+    CommonModule,
+    FormsModule
   ],
 })
 export class ResultsPage implements OnInit {
@@ -38,6 +41,7 @@ export class ResultsPage implements OnInit {
   loading = true;
   selectedItems: Set<string> = new Set();
   expandedItems: Set<string> = new Set();
+  showHighPriorityOnly = false;
 
   constructor(private http: HttpClient) {
     addIcons({ warning, chevronDown, chevronUp, home });

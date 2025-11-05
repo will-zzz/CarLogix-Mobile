@@ -26,7 +26,7 @@
       <ion-item>
         <ion-icon name="warning" slot="start"></ion-icon>
         <ion-label>Show High Priority Only</ion-label>
-        <ion-checkbox slot="end"></ion-checkbox>
+        <ion-toggle slot="end" [(ngModel)]="showHighPriorityOnly"></ion-toggle>
       </ion-item>
     </div>
 
@@ -50,9 +50,9 @@
           </div>
           <div class="item-details">
             <span class="description">Inspect Car</span>
-            <ion-icon [name]="expandedItems.has(item.carName) ? 'chevronUp' : 'chevronDown'" class="chevron-icon"></ion-icon>
+            <ion-icon name="chevronDown" class="chevron-icon" [class.rotated]="expandedItems.has(item.carName)"></ion-icon>
           </div>
-          <div *ngIf="expandedItems.has(item.carName)" class="expanded-content">
+          <div class="expanded-content" [class.expanded]="expandedItems.has(item.carName)">
             <p class="description-text">{{ item.description }}</p>
           </div>
         </ion-label>

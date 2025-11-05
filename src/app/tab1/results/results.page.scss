@@ -1,0 +1,79 @@
+.results-container {
+  padding: 16px;
+}
+
+.facility-info {
+  margin-bottom: 16px;
+  
+  p {
+    margin: 0;
+    font-size: 14px;
+    color: var(--ion-color-medium);
+  }
+}
+
+.action-buttons {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+.action-btn {
+  flex: 1;
+  --border-color: #999;
+  --color: #000;
+}
+
+.filter-section {
+  margin-bottom: 16px;
+  background: var(--ion-color-light);
+  border-radius: 8px;
+}
+
+.equipment-item {
+  --padding-start: 0;
+  --inner-padding-end: 0;
+  margin-bottom: 12px;
+  border-bottom: 1px solid var(--ion-color-light);
+  
+  &:last-child {
+    border-bottom: none;
+  }
+}
+
+.item-details {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 8px;
+}
+
+.severity-badge {
+  font-size: 12px;
+  padding: 4px 8px;
+}
+
+.description {
+  flex: 1;
+  font-size: 14px;
+  color: var(--ion-color-dark);
+}
+
+.chevron-icon {
+  font-size: 16px;
+  color: var(--ion-color-medium);
+}
+
+.loading-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+}
+

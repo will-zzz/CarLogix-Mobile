@@ -1,0 +1,43 @@
+[
+  {
+    "carName": "ADMX15700",
+    "severity": "Critical",
+    "description": "Inspect Car"
+  },
+  {
+    "carName": "ADMX15701",
+    "severity": "Critical",
+    "description": "Inspect Car"
+  },
+  {
+    "carName": "ADMX15702",
+    "severity": "Critical",
+    "description": "Inspect Car"
+  },
+  {
+    "carName": "ADMX15703",
+    "severity": "Critical",
+    "description": "Inspect Car"
+  },
+  {
+    "carName": "ADMX15704",
+    "severity": "Critical",
+    "description": "Inspect Car"
+  },
+  {
+    "carName": "ADMX15705",
+    "severity": "High",
+    "description": "Maintenance Required"
+  },
+  {
+    "carName": "ADMX15706",
+    "severity": "High",
+    "description": "Maintenance Required"
+  },
+  {
+    "carName": "ADMX15707",
+    "severity": "Medium",
+    "description": "Routine Check"
+  }
+]
+

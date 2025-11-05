@@ -1,0 +1,62 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/tabs/tab1"></ion-back-button>
+    </ion-buttons>
+    <ion-title>
+      Equipment Health Reporting
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-title size="large">Equipment Health Reporting</ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+  <div class="results-container">
+    <div class="facility-info">
+      <p>Facility: 000014 - CARY</p>
+    </div>
+
+    <div class="action-buttons">
+      <ion-button fill="outline" class="action-btn">+ Yard Repair</ion-button>
+      <ion-button fill="outline" class="action-btn">Print</ion-button>
+    </div>
+
+    <div class="filter-section">
+      <ion-item>
+        <ion-icon name="warning" slot="start"></ion-icon>
+        <ion-label>Show High Priority Only</ion-label>
+        <ion-checkbox slot="end"></ion-checkbox>
+      </ion-item>
+    </div>
+
+    <div *ngIf="loading" class="loading-overlay">
+      <ion-spinner></ion-spinner>
+    </div>
+
+    <ion-list *ngIf="!loading">
+      <ion-item *ngFor="let item of equipmentData" class="equipment-item">
+        <ion-checkbox 
+          slot="end" 
+          [checked]="selectedItems.has(item.carName)"
+          (ionChange)="toggleSelection(item.carName)">
+        </ion-checkbox>
+        <ion-label>
+          <h2>{{ item.carName }}</h2>
+          <div class="item-details">
+            <ion-badge [color]="getSeverityColor(item.severity)" class="severity-badge">
+              {{ item.severity }}
+            </ion-badge>
+            <span class="description">{{ item.description }}</span>
+            <ion-icon name="chevronDown" class="chevron-icon"></ion-icon>
+          </div>
+        </ion-label>
+      </ion-item>
+    </ion-list>
+  </div>
+</ion-content>
+

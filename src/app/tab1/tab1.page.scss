@@ -1,0 +1,81 @@
+.search-container {
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.logo-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 24px;
+  padding: 20px 0;
+}
+
+.carlogix-logo {
+  width: 100%;
+  max-width: 400px;
+  height: auto;
+  margin-bottom: 16px;
+}
+
+.page-title {
+  font-size: 20px;
+  font-weight: 500;
+  margin: 0;
+  color: var(--ion-color-dark);
+}
+
+.railcar-inputs {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.railcar-item {
+  --padding-start: 0;
+  --inner-padding-end: 0;
+}
+
+.add-more-container {
+  margin-top: 8px;
+}
+
+.add-more-link {
+  color: var(--ion-color-primary);
+  text-decoration: none;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.search-button-container {
+  margin-top: 24px;
+}
+
+.search-button {
+  --background: #b3d9ff;
+  --color: #000;
+  font-weight: 500;
+  height: 48px;
+}
+
+.loading-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+}
+
+.search-container.loading {
+  opacity: 0.5;
+  pointer-events: none;
+}
+

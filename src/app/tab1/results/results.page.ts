@@ -3,7 +3,7 @@ import { IonHeader, IonToolbar, IonTitle, IonContent, IonList, IonItem, IonLabel
 import { HttpClient } from '@angular/common/http';
 import { CommonModule } from '@angular/common';
 import { addIcons } from 'ionicons';
-import { warning, chevronDown } from 'ionicons/icons';
+import { warning, chevronDown, chevronUp, home } from 'ionicons/icons';
 
 interface EquipmentHealthItem {
   carName: string;
@@ -37,9 +37,10 @@ export class ResultsPage implements OnInit {
   equipmentData: EquipmentHealthItem[] = [];
   loading = true;
   selectedItems: Set<string> = new Set();
+  expandedItems: Set<string> = new Set();
 
   constructor(private http: HttpClient) {
-    addIcons({ warning, chevronDown });
+    addIcons({ warning, chevronDown, chevronUp, home });
   }
 
   ngOnInit() {
@@ -62,11 +63,26 @@ export class ResultsPage implements OnInit {
     }, 1500); // 1.5 second delay to show loading state
   }
 
-  toggleSelection(carName: string) {
+  toggleSelection(carName: string, event?: Event) {
+    if (event) {
+      event.stopPropagation();
+    }
     if (this.selectedItems.has(carName)) {
       this.selectedItems.delete(carName);
     } else {
       this.selectedItems.add(carName);
+    }
+  }
+
+  toggleExpand(carName: string, event?: Event) {
+    // Don't expand if clicking on checkbox
+    if (event && (event.target as HTMLElement).closest('ion-checkbox')) {
+      return;
+    }
+    if (this.expandedItems.has(carName)) {
+      this.expandedItems.delete(carName);
+    } else {
+      this.expandedItems.add(carName);
     }
   }
 

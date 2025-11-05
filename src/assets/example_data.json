@@ -2,42 +2,42 @@
   {
     "carName": "ADMX15700",
     "severity": "Critical",
-    "description": "Inspect Car"
+    "description": "Check brake system for wear and ensure proper pad thickness. Inspect wheel bearings and verify axle alignment."
   },
   {
     "carName": "ADMX15701",
     "severity": "Critical",
-    "description": "Inspect Car"
+    "description": "Examine coupler mechanism for damage or excessive wear. Test automatic coupler release functionality."
   },
   {
     "carName": "ADMX15702",
     "severity": "Critical",
-    "description": "Inspect Car"
+    "description": "Inspect undercarriage for structural integrity. Check for cracks in frame or compromised support beams."
   },
   {
     "carName": "ADMX15703",
     "severity": "Critical",
-    "description": "Inspect Car"
+    "description": "Review air brake system pressure and verify all connections are secure. Test emergency brake activation."
   },
   {
     "carName": "ADMX15704",
     "severity": "Critical",
-    "description": "Inspect Car"
+    "description": "Examine door mechanisms and seals for proper operation. Check for damage to door tracks or rollers."
   },
   {
     "carName": "ADMX15705",
     "severity": "High",
-    "description": "Maintenance Required"
+    "description": "Perform routine lubrication of all moving parts. Check fluid levels and replace filters as needed."
   },
   {
     "carName": "ADMX15706",
     "severity": "High",
-    "description": "Maintenance Required"
+    "description": "Inspect electrical connections and verify lighting systems are functioning correctly. Test horn and safety equipment."
   },
   {
     "carName": "ADMX15707",
     "severity": "Medium",
-    "description": "Routine Check"
+    "description": "Standard visual inspection of exterior surfaces. Check for minor dents or scratches that may need attention."
   }
 ]
 

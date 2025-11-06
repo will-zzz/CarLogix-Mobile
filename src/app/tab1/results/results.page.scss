@@ -41,10 +41,20 @@
   border-radius: 8px;
 }
 
+ion-list {
+  padding: 0;
+  margin: 0;
+  
+  ion-item {
+    margin-bottom: 0;
+  }
+}
+
 .equipment-item {
   --padding-start: 0;
   --inner-padding-end: 0;
-  margin-bottom: 12px;
+  margin-bottom: 0;
+  padding-top: 12px;
   border-bottom: 1px solid var(--ion-color-light);
   cursor: pointer;
   position: relative;

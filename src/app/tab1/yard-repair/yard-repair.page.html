@@ -134,32 +134,36 @@
         </ion-item>
       </div>
 
-      <div class="quantity-row">
-        <ion-label>Qty *</ion-label>
-        <div class="quantity-controls">
-          <ion-button
-            fill="solid"
-            class="quantity-btn"
-            (click)="decrementQuantity()"
-            [disabled]="(repairForm.controls.quantity.value ?? 0) === 0"
-          >
-            −
-          </ion-button>
-          <ion-input
-            class="quantity-input"
-            type="number"
-            formControlName="quantity"
-            min="0"
-            inputmode="numeric"
-            (ionInput)="handleQuantityInput($event)"
-          ></ion-input>
-          <ion-button
-            fill="solid"
-            class="quantity-btn"
-            (click)="incrementQuantity()"
-          >
-            +
-          </ion-button>
+      <div class="form-field quantity-field">
+        <label class="field-label">Qty *</label>
+        <div class="quantity-control-row">
+          <ion-item lines="none" class="field-control quantity-input-item">
+            <ion-input
+              type="number"
+              formControlName="quantity"
+              min="0"
+              inputmode="numeric"
+              (ionInput)="handleQuantityInput($event)"
+              class="quantity-input"
+            ></ion-input>
+          </ion-item>
+          <div class="quantity-stepper">
+            <ion-button
+              fill="solid"
+              class="quantity-btn"
+              (click)="incrementQuantity()"
+            >
+              +
+            </ion-button>
+            <ion-button
+              fill="solid"
+              class="quantity-btn"
+              (click)="decrementQuantity()"
+              [disabled]="(repairForm.controls.quantity.value ?? 0) === 0"
+            >
+              −
+            </ion-button>
+          </div>
         </div>
       </div>
     </form>
@@ -173,20 +177,20 @@
         <ion-col size="8">
           <ion-button
             expand="block"
-            fill="outline"
-            color="medium"
-            routerLink="/tabs/tab1/results"
+            [disabled]="!canSubmit"
+            (click)="submitWorkOrder()"
           >
-            Cancel
+            + Work Order(s)
           </ion-button>
         </ion-col>
         <ion-col size="4">
           <ion-button
             expand="block"
-            [disabled]="!canSubmit"
-            (click)="submitWorkOrder()"
+            fill="outline"
+            color="medium"
+            routerLink="/tabs/tab1/results"
           >
-            + Work Order(s)
+            Cancel
           </ion-button>
         </ion-col>
       </ion-row>

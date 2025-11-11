@@ -124,57 +124,56 @@
   text-align: center;
 }
 
-.quantity-row {
+.quantity-field .quantity-control-row {
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  margin-top: 16px;
-  padding: 14px 16px;
-  border: 1px solid #e4e4e7;
-  border-radius: 12px;
-  background: #f9f9fb;
-  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.6);
+  gap: 12px;
 }
 
-.quantity-controls {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-}
-
-.quantity-row ion-label {
-  font-weight: 600;
-  font-size: 15px;
-  color: #3a3a3a;
+.quantity-input-item {
+  flex: 1;
 }
 
 .quantity-input {
   --padding-start: 0;
   --padding-end: 0;
-  --padding-top: 0;
-  --padding-bottom: 0;
-  --background: transparent;
-  --color: #1f1f1f;
-  --placeholder-color: #8f8f8f;
-  width: 60px;
-  text-align: center;
+  --padding-top: 12px;
+  --padding-bottom: 12px;
+  text-align: left;
   font-weight: 600;
   font-size: 17px;
+  --placeholder-color: #8f8f8f;
 }
 
-.quantity-btn {
+.quantity-input::part(native)::placeholder {
+  color: #8f8f8f;
+}
+
+.quantity-stepper {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 6px;
+  height: 56px;
+  width: 48px;
+}
+
+.quantity-stepper .quantity-btn {
   --border-radius: 12px;
   --padding-start: 8px;
   --padding-end: 8px;
-  --padding-top: 6px;
-  --padding-bottom: 6px;
+  --padding-top: 4px;
+  --padding-bottom: 4px;
   --background: #ffffff;
   --background-activated: #f0edff;
   --background-hover: #f4f1ff;
   --color: #5b4ded;
   --box-shadow: 0 6px 12px rgba(91, 77, 237, 0.18);
-  font-size: 22px;
+  height: 24px;
+  min-height: 24px;
+  font-size: 20px;
   font-weight: 700;
+  margin: 0;
 }
 
 .footer-actions {

@@ -70,8 +70,8 @@
 }
 
 .field-control {
-  --inner-padding-top: 12px;
-  --inner-padding-bottom: 12px;
+  // --inner-padding-top: 12px;
+  // --inner-padding-bottom: 12px;
   --padding-start: 16px;
   border-radius: 14px;
   backdrop-filter: blur(12px);
@@ -90,8 +90,8 @@
 .field-control ion-textarea {
   --padding-start: 0;
   --padding-end: 0;
-  --padding-top: 0;
-  --padding-bottom: 0;
+  --padding-top: 12px;
+  --padding-bottom: 12px;
 }
 
 .quantity-row {
@@ -161,5 +161,3 @@
 .footer-actions ion-button {
   height: 48px;
 }
-
-

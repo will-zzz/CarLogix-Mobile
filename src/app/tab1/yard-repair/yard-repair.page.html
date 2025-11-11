@@ -82,7 +82,11 @@
       <div class="form-field">
         <label class="field-label">Condition Code *</label>
         <ion-item lines="none" class="field-control">
-          <ion-select placeholder="Select code" formControlName="conditionCode">
+          <ion-select
+            interface="popover"
+            placeholder="Select code"
+            formControlName="conditionCode"
+          >
             <ion-select-option
               *ngFor="let option of conditionOptions"
               [value]="option.value"
@@ -96,7 +100,11 @@
       <div class="form-field">
         <label class="field-label">Why Made Code *</label>
         <ion-item lines="none" class="field-control">
-          <ion-select placeholder="Select reason" formControlName="whyMadeCode">
+          <ion-select
+            interface="popover"
+            placeholder="Select reason"
+            formControlName="whyMadeCode"
+          >
             <ion-select-option
               *ngFor="let option of whyMadeOptions"
               [value]="option.value"

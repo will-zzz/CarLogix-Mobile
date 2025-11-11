@@ -44,7 +44,16 @@
       <div class="form-field">
         <label class="field-label">Repair Date *</label>
         <ion-item lines="none" class="field-control">
-          <ion-input type="date" formControlName="repairDate"></ion-input>
+          <ion-icon
+            slot="start"
+            name="calendar-outline"
+            class="field-icon"
+          ></ion-icon>
+          <ion-input
+            type="date"
+            formControlName="repairDate"
+            class="date-input"
+          ></ion-input>
         </ion-item>
       </div>
 

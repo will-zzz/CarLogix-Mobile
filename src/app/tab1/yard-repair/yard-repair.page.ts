@@ -16,6 +16,7 @@ import {
   IonTextarea,
   IonSelect,
   IonSelectOption,
+  IonIcon,
   IonButton,
   IonText,
   IonFooter,
@@ -25,6 +26,8 @@ import {
 } from '@ionic/angular/standalone';
 import { CommonModule } from '@angular/common';
 import { ToastController } from '@ionic/angular';
+import { addIcons } from 'ionicons';
+import { calendarOutline } from 'ionicons/icons';
 
 interface RailcarSelection {
   name: string;
@@ -50,6 +53,7 @@ interface RailcarSelection {
     IonTextarea,
     IonSelect,
     IonSelectOption,
+    IonIcon,
     IonButton,
     IonText,
     IonFooter,
@@ -92,7 +96,11 @@ export class YardRepairPage implements OnInit {
     private router: Router,
     private fb: FormBuilder,
     private toastController: ToastController
-  ) {}
+  ) {
+    addIcons({
+      'calendar-outline': calendarOutline,
+    });
+  }
 
   ngOnInit(): void {
     const navigation = this.router.getCurrentNavigation();

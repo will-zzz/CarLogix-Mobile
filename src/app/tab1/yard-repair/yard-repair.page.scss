@@ -87,11 +87,41 @@
   font-weight: 500;
 }
 
+.field-control ion-input {
+  --padding-top: 12px;
+  --padding-bottom: 12px;
+}
+
 .field-control ion-textarea {
   --padding-start: 0;
   --padding-end: 0;
   --padding-top: 12px;
   --padding-bottom: 12px;
+}
+
+.field-control ion-icon.field-icon {
+  color: #8a8a96;
+  --color: #8a8a96;
+  --ion-color-base: #8a8a96;
+  font-size: 20px;
+  margin-right: 10px;
+  width: 20px;
+  height: 20px;
+}
+
+.field-control ion-input.date-input {
+  --padding-start: 0;
+  --padding-end: 0;
+  text-align: center;
+}
+
+.field-control ion-input.date-input::part(native) {
+  text-align: center;
+}
+
+.field-control ion-input.date-input::part(native)::-webkit-date-and-time-value,
+.field-control ion-input.date-input::part(native)::-webkit-datetime-edit {
+  text-align: center;
 }
 
 .quantity-row {

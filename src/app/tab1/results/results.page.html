@@ -18,7 +18,14 @@
     </div>
 
     <div class="action-buttons">
-      <ion-button fill="outline" class="action-btn">+ Yard Repair</ion-button>
+      <ion-button
+        fill="outline"
+        class="action-btn"
+        [disabled]="!hasSelections"
+        (click)="startYardRepair()"
+      >
+        + Yard Repair
+      </ion-button>
       <ion-button fill="outline" class="action-btn">Print</ion-button>
     </div>
 
@@ -35,7 +42,7 @@
     </div>
 
     <ion-list *ngIf="!loading">
-      <ion-item *ngFor="let item of equipmentData" class="equipment-item" [class.expanded]="expandedItems.has(item.carName)" (click)="toggleExpand(item.carName, $event)">
+      <ion-item *ngFor="let item of filteredEquipmentData" class="equipment-item" [class.expanded]="expandedItems.has(item.carName)" (click)="toggleExpand(item.carName, $event)">
         <ion-checkbox 
           slot="end" 
           [checked]="selectedItems.has(item.carName)"

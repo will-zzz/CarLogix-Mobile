@@ -17,6 +17,11 @@ export const routes: Routes = [
           import('../tab1/results/results.page').then((m) => m.ResultsPage),
       },
       {
+        path: 'tab1/yard-repair',
+        loadComponent: () =>
+          import('../tab1/yard-repair/yard-repair.page').then((m) => m.YardRepairPage),
+      },
+      {
         path: 'tab2',
         loadComponent: () =>
           import('../tab2/tab2.page').then((m) => m.Tab2Page),

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { IonHeader, IonToolbar, IonTitle, IonContent, IonList, IonItem, IonLabel, IonBadge, IonCheckbox, IonButton, IonIcon, IonSpinner, IonBackButton, IonButtons, IonToggle } from '@ionic/angular/standalone';
 import { HttpClient } from '@angular/common/http';
 import { CommonModule } from '@angular/common';
@@ -43,7 +44,10 @@ export class ResultsPage implements OnInit {
   expandedItems: Set<string> = new Set();
   showHighPriorityOnly = false;
 
-  constructor(private http: HttpClient) {
+  constructor(
+    private http: HttpClient,
+    private router: Router,
+  ) {
     addIcons({ warning, chevronDown, chevronUp, home });
   }
 
@@ -65,6 +69,15 @@ export class ResultsPage implements OnInit {
         }
       });
     }, 1500); // 1.5 second delay to show loading state
+  }
+
+  get filteredEquipmentData(): EquipmentHealthItem[] {
+    if (!this.showHighPriorityOnly) {
+      return this.equipmentData;
+    }
+    return this.equipmentData.filter((item) =>
+      ['critical', 'high'].includes(item.severity.toLowerCase()),
+    );
   }
 
   toggleSelection(carName: string, event?: Event) {
@@ -101,6 +114,23 @@ export class ResultsPage implements OnInit {
       default:
         return 'medium';
     }
+  }
+
+  get hasSelections(): boolean {
+    return this.selectedItems.size > 0;
+  }
+
+  startYardRepair() {
+    if (!this.hasSelections) {
+      return;
+    }
+
+    const selectedCars = Array.from(this.selectedItems);
+    this.router.navigate(['/tabs/tab1/yard-repair'], {
+      state: {
+        selectedCars,
+      },
+    });
   }
 }
 

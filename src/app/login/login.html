@@ -1,0 +1,50 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Login</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <!-- App logo and welcome text -->
+  <div style="text-align: center; margin-bottom: 24px;">
+    <img src="assets/icon/favicon.png" alt="App Logo" width="80" height="80" />
+    <h2>Welcome to CarLogix</h2>
+    <p>Please sign in to continue</p>
+  </div>
+
+  <!-- Email input -->
+  <ion-item>
+    <ion-label position="stacked">Email</ion-label>
+    <ion-input
+      placeholder="Enter your email"
+      [(ngModel)]="email"
+      type="email"
+      autocomplete="username"
+      clear-input="true">
+    </ion-input>
+  </ion-item>
+
+  <!-- Password input -->
+  <ion-item>
+    <ion-label position="stacked">Password</ion-label>
+    <ion-input
+      placeholder="Enter your password"
+      [(ngModel)]="password"
+      type="password"
+      autocomplete="current-password"
+      clear-input="true">
+    </ion-input>
+  </ion-item>
+
+  <!-- Login button -->
+  <ion-button expand="block" color="primary" (click)="login()" style="margin-top: 24px;">
+    Login
+  </ion-button>
+
+  <!-- Optional link -->
+  <div style="text-align: center; margin-top: 12px;">
+    <a href="#" style="color: var(--ion-color-medium); text-decoration: none;">
+      Forgot password?
+    </a>
+  </div>
+</ion-content>

@@ -1,9 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { IonHeader, IonToolbar, IonTitle, IonContent, IonList, IonItem, IonLabel, IonBadge, IonCheckbox, IonButton, IonIcon, IonSpinner, IonBackButton, IonButtons } from '@ionic/angular/standalone';
+import { Router } from '@angular/router';
+import { IonHeader, IonToolbar, IonTitle, IonContent, IonList, IonItem, IonLabel, IonBadge, IonCheckbox, IonButton, IonIcon, IonSpinner, IonBackButton, IonButtons, IonToggle } from '@ionic/angular/standalone';
 import { HttpClient } from '@angular/common/http';
 import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
 import { addIcons } from 'ionicons';
-import { warning, chevronDown } from 'ionicons/icons';
+import { warning, chevronDown, chevronUp, home } from 'ionicons/icons';
 
 interface EquipmentHealthItem {
   carName: string;
@@ -30,16 +32,23 @@ interface EquipmentHealthItem {
     IonSpinner,
     IonBackButton,
     IonButtons,
-    CommonModule
+    IonToggle,
+    CommonModule,
+    FormsModule
   ],
 })
 export class ResultsPage implements OnInit {
   equipmentData: EquipmentHealthItem[] = [];
   loading = true;
   selectedItems: Set<string> = new Set();
+  expandedItems: Set<string> = new Set();
+  showHighPriorityOnly = false;
 
-  constructor(private http: HttpClient) {
-    addIcons({ warning, chevronDown });
+  constructor(
+    private http: HttpClient,
+    private router: Router,
+  ) {
+    addIcons({ warning, chevronDown, chevronUp, home });
   }
 
   ngOnInit() {
@@ -62,11 +71,35 @@ export class ResultsPage implements OnInit {
     }, 1500); // 1.5 second delay to show loading state
   }
 
-  toggleSelection(carName: string) {
+  get filteredEquipmentData(): EquipmentHealthItem[] {
+    if (!this.showHighPriorityOnly) {
+      return this.equipmentData;
+    }
+    return this.equipmentData.filter((item) =>
+      ['critical', 'high'].includes(item.severity.toLowerCase()),
+    );
+  }
+
+  toggleSelection(carName: string, event?: Event) {
+    if (event) {
+      event.stopPropagation();
+    }
     if (this.selectedItems.has(carName)) {
       this.selectedItems.delete(carName);
     } else {
       this.selectedItems.add(carName);
+    }
+  }
+
+  toggleExpand(carName: string, event?: Event) {
+    // Don't expand if clicking on checkbox
+    if (event && (event.target as HTMLElement).closest('ion-checkbox')) {
+      return;
+    }
+    if (this.expandedItems.has(carName)) {
+      this.expandedItems.delete(carName);
+    } else {
+      this.expandedItems.add(carName);
     }
   }
 
@@ -81,6 +114,23 @@ export class ResultsPage implements OnInit {
       default:
         return 'medium';
     }
+  }
+
+  get hasSelections(): boolean {
+    return this.selectedItems.size > 0;
+  }
+
+  startYardRepair() {
+    if (!this.hasSelections) {
+      return;
+    }
+
+    const selectedCars = Array.from(this.selectedItems);
+    this.router.navigate(['/tabs/tab1/yard-repair'], {
+      state: {
+        selectedCars,
+      },
+    });
   }
 }
 

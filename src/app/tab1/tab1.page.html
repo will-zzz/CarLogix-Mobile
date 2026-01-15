@@ -18,6 +18,12 @@
           placeholder="Enter railcar number"
           type="text">
         </ion-input>
+        <ion-button 
+          fill="clear" 
+          class="camera-button"
+          (click)="openCamera(i); $event.stopPropagation()">
+          <ion-icon name="camera" slot="icon-only"></ion-icon>
+        </ion-button>
       </ion-item>
     </div>
 

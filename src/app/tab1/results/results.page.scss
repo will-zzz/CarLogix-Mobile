@@ -2,6 +2,17 @@
   padding: 16px;
 }
 
+.header-title {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 16px;
+  
+  .home-icon {
+    font-size: 18px;
+  }
+}
+
 .facility-info {
   margin-bottom: 16px;
   
@@ -30,27 +41,66 @@
   border-radius: 8px;
 }
 
+ion-list {
+  padding: 0;
+  margin: 0;
+  
+  ion-item {
+    margin-bottom: 0;
+  }
+}
+
 .equipment-item {
   --padding-start: 0;
   --inner-padding-end: 0;
-  margin-bottom: 12px;
+  margin-bottom: 0;
+  padding-top: 12px;
   border-bottom: 1px solid var(--ion-color-light);
+  cursor: pointer;
+  position: relative;
   
   &:last-child {
     border-bottom: none;
   }
+  
+  ion-checkbox {
+    position: absolute;
+    right: 0;
+    top: 32px;
+    margin-top: 0;
+    z-index: 1;
+    pointer-events: auto;
+    transform: translateY(-50%);
+  }
+  
+  ion-label {
+    padding-right: 50px;
+  }
+}
+
+.item-header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 8px;
+}
+
+.severity-badge {
+  font-size: 12px;
+  padding: 4px 8px;
+  flex-shrink: 0;
+}
+
+.car-name {
+  margin: 0;
+  font-size: 16px;
+  font-weight: 500;
 }
 
 .item-details {
   display: flex;
   align-items: center;
   gap: 8px;
-  margin-top: 8px;
-}
-
-.severity-badge {
-  font-size: 12px;
-  padding: 4px 8px;
 }
 
 .description {
@@ -62,6 +112,41 @@
 .chevron-icon {
   font-size: 16px;
   color: var(--ion-color-medium);
+  flex-shrink: 0;
+  transition: transform 0.3s ease-out;
+  
+  &.rotated {
+    transform: rotate(180deg);
+  }
+}
+
+.expanded-content {
+  max-height: 0;
+  overflow: hidden;
+  margin-top: 0;
+  padding-top: 0;
+  border-top: none;
+  transition: max-height 0.3s ease-out, margin-top 0.3s ease-out, padding-top 0.3s ease-out, border-top 0.3s ease-out;
+  
+  &.expanded {
+    max-height: 500px;
+    margin-top: 12px;
+    padding-top: 12px;
+    border-top: 1px solid var(--ion-color-light);
+  }
+}
+
+.description-text {
+  margin: 0;
+  font-size: 14px;
+  color: var(--ion-color-dark);
+  line-height: 1.5;
+  opacity: 0;
+  transition: opacity 0.3s ease-out 0.1s;
+}
+
+.expanded-content.expanded .description-text {
+  opacity: 1;
 }
 
 .loading-overlay {

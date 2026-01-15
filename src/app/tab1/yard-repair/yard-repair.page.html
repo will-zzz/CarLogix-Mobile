@@ -1,0 +1,199 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/tabs/tab1/results"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Yard Repair</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true" class="yard-repair-content">
+  <div class="section">
+    <div class="section-header">
+      <div class="step-circle">1</div>
+      <div class="section-title">Select Railcar</div>
+    </div>
+    <ion-list class="railcar-list">
+      <ion-item
+        *ngFor="let railcar of railcars; trackBy: trackByRailcar"
+        class="railcar-item"
+        (click)="toggleRailcarSelection(railcar)"
+        button="true"
+      >
+        <ion-label>{{ railcar.name }}</ion-label>
+        <ion-checkbox
+          slot="end"
+          [checked]="railcar.selected"
+          (click)="$event.stopPropagation()"
+          (ionChange)="railcar.selected = $event.detail.checked"
+        ></ion-checkbox>
+      </ion-item>
+    </ion-list>
+    <ion-text color="medium" class="selected-count">
+      {{ selectedRailcars.length }} of {{ railcars.length }} selected
+    </ion-text>
+  </div>
+
+  <div class="section">
+    <div class="section-header">
+      <div class="step-circle">2</div>
+      <div class="section-title">Enter Repair Details</div>
+    </div>
+
+    <form [formGroup]="repairForm" class="repair-form">
+      <div class="form-field">
+        <label class="field-label">Repair Date *</label>
+        <ion-item lines="none" class="field-control">
+          <ion-icon
+            slot="start"
+            name="calendar-outline"
+            class="field-icon"
+          ></ion-icon>
+          <ion-input
+            type="date"
+            formControlName="repairDate"
+            class="date-input"
+          ></ion-input>
+        </ion-item>
+      </div>
+
+      <div class="form-field">
+        <label class="field-label">Applied Job Code *</label>
+        <ion-item lines="none" class="field-control">
+          <ion-input
+            placeholder="Enter job code"
+            formControlName="appliedJobCode"
+          ></ion-input>
+        </ion-item>
+      </div>
+
+      <div class="form-field">
+        <label class="field-label">Narrative</label>
+        <ion-item lines="none" class="field-control">
+          <ion-textarea
+            placeholder="Optional notes"
+            formControlName="narrative"
+            autoGrow="true"
+          ></ion-textarea>
+        </ion-item>
+      </div>
+
+      <div class="form-field">
+        <label class="field-label">Removed Job Code</label>
+        <ion-item lines="none" class="field-control">
+          <ion-input
+            placeholder="Optional"
+            formControlName="removedJobCode"
+          ></ion-input>
+        </ion-item>
+      </div>
+
+      <div class="form-field">
+        <label class="field-label">Condition Code *</label>
+        <ion-item lines="none" class="field-control">
+          <ion-select
+            interface="popover"
+            placeholder="Select code"
+            formControlName="conditionCode"
+          >
+            <ion-select-option
+              *ngFor="let option of conditionOptions"
+              [value]="option.value"
+            >
+              {{ option.label }}
+            </ion-select-option>
+          </ion-select>
+        </ion-item>
+      </div>
+
+      <div class="form-field">
+        <label class="field-label">Why Made Code *</label>
+        <ion-item lines="none" class="field-control">
+          <ion-select
+            interface="popover"
+            placeholder="Select reason"
+            formControlName="whyMadeCode"
+          >
+            <ion-select-option
+              *ngFor="let option of whyMadeOptions"
+              [value]="option.value"
+            >
+              {{ option.label }}
+            </ion-select-option>
+          </ion-select>
+        </ion-item>
+      </div>
+
+      <div class="form-field">
+        <label class="field-label">Location</label>
+        <ion-item lines="none" class="field-control">
+          <ion-input
+            placeholder="Optional"
+            formControlName="location"
+          ></ion-input>
+        </ion-item>
+      </div>
+
+      <div class="form-field quantity-field">
+        <label class="field-label">Qty *</label>
+        <div class="quantity-control-row">
+          <ion-item lines="none" class="field-control quantity-input-item">
+            <ion-input
+              type="number"
+              formControlName="quantity"
+              min="0"
+              inputmode="numeric"
+              (ionInput)="handleQuantityInput($event)"
+              class="quantity-input"
+            ></ion-input>
+          </ion-item>
+          <div class="quantity-stepper">
+            <ion-button
+              fill="solid"
+              class="quantity-btn"
+              (click)="incrementQuantity()"
+            >
+              +
+            </ion-button>
+            <ion-button
+              fill="solid"
+              class="quantity-btn"
+              (click)="decrementQuantity()"
+              [disabled]="(repairForm.controls.quantity.value ?? 0) === 0"
+            >
+              −
+            </ion-button>
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+</ion-content>
+
+<ion-footer class="footer-actions">
+  <ion-toolbar>
+    <ion-grid>
+      <ion-row>
+        <ion-col size="8">
+          <ion-button
+            expand="block"
+            [disabled]="!canSubmit"
+            (click)="submitWorkOrder()"
+          >
+            + Work Order(s)
+          </ion-button>
+        </ion-col>
+        <ion-col size="4">
+          <ion-button
+            expand="block"
+            fill="outline"
+            color="medium"
+            routerLink="/tabs/tab1/results"
+          >
+            Cancel
+          </ion-button>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-toolbar>
+</ion-footer>
